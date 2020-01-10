@@ -1,0 +1,29 @@
+{
+    "name": "mrlinnth/lasinkyay",
+    "description": "Subscription plans for Laravel.",
+    "keywords": ["plans", "laravel", "subscriptions", "memberships"],
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": "^7.2.0",
+        "illuminate/database": "^6.0.0",
+        "illuminate/support": "^6.0.0"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "illuminate/container": "^6.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mrlinnth\\Lasinkyay\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mrlinnth\\Lasinkyay\\LasinkyayServiceProvider"
+            ]
+        }
+    }
+}
