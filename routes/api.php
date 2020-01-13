@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 
 //backend routes
-Route::prefix('api/' . config('lasinkyay.prefix.backend'))
+Route::prefix('api/lasinkyay')
     ->middleware('api', 'auth:api')
     ->name('api-lasinkyay.')
     ->group(function () {

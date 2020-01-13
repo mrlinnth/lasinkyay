@@ -39,7 +39,7 @@ class PlanController extends Controller
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'invoice_period' => 'required',
+            'interval_count' => 'required',
         ]);
 
         $plan = Plan::create([

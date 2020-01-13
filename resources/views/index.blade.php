@@ -1,9 +1,11 @@
-@extends('lasinkyay::layouts.master')
+@extends('lasinkyay::layouts.full-w')
+
+@section('heading', 'Dashboard')
 
 @section('content')
-    <h1 class="text-4xl">Hello World</h1>
 
-    <p>
-        This view is loaded from module: {!! config('lasinkyay.name') !!}
-    </p>
+    <h3 class="text-2xl font-medium leading-none my-3">Pending Subscriptions</h3>
+
+	@include('lasinkyay::partials.subs-table', ['subscriptions' => $subscriptions])
+
 @endsection

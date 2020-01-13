@@ -2,12 +2,6 @@
 
 return [
 
-    // for routes
-    'prefix' => [
-        'backend' => 'lasinkyay',
-        'frontend' => 'plans',
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Positive Words

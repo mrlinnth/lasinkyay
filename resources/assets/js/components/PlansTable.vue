@@ -30,7 +30,6 @@
 
 <script>
 export default {
-  props: ['prefixBackend'],
   data() {
     return {
       plans: [],
@@ -39,7 +38,7 @@ export default {
   },
   methods: {
     queryServer() {
-      axios.get('/api/'+ this.prefixBackend +'/plans')
+      axios.get('/api/lasinkyay/plans')
         .then((response) => {
           this.loading = false
           this.plans = response.data.data
@@ -50,10 +49,10 @@ export default {
       this.queryServer()
     },
     viewPlan(id) {
-      location.href = '/'+ this.prefixBackend +'/plans/' + id
+      location.href = '/lasinkyay/plans/' + id
     },
     editPlan(id) {
-      location.href = '/'+ this.prefixBackend +'/plans/' + id + '/edit'
+      location.href = '/lasinkyay/plans/' + id + '/edit'
     },
     deletePlan(id) {
       console.log('TO DO : delete ', id)

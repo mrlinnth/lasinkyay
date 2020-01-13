@@ -1,8 +1,8 @@
-@extends('lasinkyay::layouts.master')
+@extends('lasinkyay::layouts.full-w')
+
+@section('heading', 'New Plan')
 
 @section('content')
-<div class="m-10">
-	<h2 class="text-3xl font-medium leading-none mb-2">New Plan</h2>
 
 	<form action="{{ route('lasinkyay.plans.store') }}" method="POST" class="w-full">
 		@csrf
@@ -79,5 +79,5 @@
 			</div>
 		</div>
 	</form>
-</div>
+
 @endsection

@@ -12,7 +12,9 @@ interface PlanSubscriptionInterface
     public function onTrial();
     public function isCanceled();
     public function isEnded();
+    public function isPending();
     public function renew();
+    public function approve();
     public function cancel($immediately);
     public function changePlan($plan);
 }

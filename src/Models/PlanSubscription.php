@@ -29,6 +29,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     const STATUS_ENDED = 'ended';
     const STATUS_ACTIVE = 'active';
     const STATUS_CANCELED = 'canceled';
+    const STATUS_PENDING = 'pending';
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +39,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     protected $fillable = [
         'plan_id',
         'name',
+        'bought_at',
         'trial_ends_at',
         'starts_at',
         'ends_at',
@@ -51,7 +53,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     protected $dates = [
         'created_at', 'updated_at',
-        'canceled_at', 'trial_ends_at', 'ends_at', 'starts_at',
+        'bought_at', 'canceled_at', 'trial_ends_at', 'ends_at', 'starts_at',
     ];
 
     /**
@@ -61,6 +63,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     protected $casts = [
         'canceled_immediately' => 'boolean',
+        'is_pending' => 'boolean',
     ];
 
     /**
@@ -88,6 +91,10 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
             // Set period if it wasn't set
             if (!$model->ends_at) {
                 $model->setNewPeriod();
+            }
+            // save bought date
+            if (!$model->bought_at) {
+                $model->bought_at = new Carbon;
             }
         });
 
@@ -133,6 +140,10 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
             return self::STATUS_ACTIVE;
         }
 
+        if ($this->isPending()) {
+            return self::STATUS_PENDING;
+        }
+
         if ($this->isCanceled()) {
             return self::STATUS_CANCELED;
         }
@@ -149,7 +160,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     public function isActive()
     {
-        if ((!$this->isEnded() or $this->onTrial()) and !$this->isCanceledImmediately()) {
+        if ((!$this->isEnded() or $this->onTrial()) and !$this->isCanceledImmediately() and !$this->isPending()) {
             return true;
         }
 
@@ -200,6 +211,16 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
         $endsAt = Carbon::instance($this->ends_at);
 
         return Carbon::now()->gte($endsAt);
+    }
+
+    /**
+     * Check if subscription is pending.
+     *
+     * @return bool
+     */
+    public function isPending()
+    {
+        return $this->is_pending;
     }
 
     /**
@@ -290,6 +311,20 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     }
 
     /**
+     * Approve PENDING subscription
+     *
+     * @return  $this
+     */
+    public function approve()
+    {
+        $this->is_pending = false;
+        $this->setNewPeriod();
+        $this->save();
+
+        return $this;
+    }
+
+    /**
      * Get Subscription Ability instance.
      *
      * @return \Mrlinnth\Lasinkyay\SubscriptionAbility
@@ -359,6 +394,16 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     public function scopeFindEndedPeriod($query)
     {
         $query->where('ends_at', '<=', date('Y-m-d H:i:s'));
+    }
+
+    /**
+     * Find pending subscriptions.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFindPending($query)
+    {
+        $query->where('is_pending', '=', 1);
     }
 
     /**

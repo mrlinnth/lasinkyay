@@ -1,8 +1,8 @@
-@extends('lasinkyay::layouts.master')
+@extends('lasinkyay::layouts.full-w')
+
+@section('heading', 'Edit Plan')
 
 @section('content')
-<div class="m-10">
-	<h2 class="text-3xl font-medium leading-none mb-2">Edit Plan</h2>
 
 	<form action="{{ route('lasinkyay.plans.update', ['plan' => $plan]) }}" method="POST" class="w-full">
 		@method('PUT')
@@ -80,5 +80,5 @@
 			</div>
 		</div>
 	</form>
-</div>
+
 @endsection
