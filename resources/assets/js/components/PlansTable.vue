@@ -14,8 +14,8 @@
             </tr>
             <tr v-for="plan in plans">
                 <td>{{ plan.name }}</td>
-                <td>{{ plan.price }} {{ plan.currency }}</td>
-                <td>{{ plan.invoice_period }} {{ plan.invoice_interval }}</td>
+                <td>{{ plan.price }}</td>
+                <td>{{ plan.interval_count }} {{ plan.interval }}</td>
                 <td>{{ plan.description }}</td>
                 <td>
                     <button v-on:click="viewPlan(plan.id)" class="mr-2">View</button>
@@ -30,6 +30,7 @@
 
 <script>
 export default {
+  props: ['prefixBackend'],
   data() {
     return {
       plans: [],
@@ -38,7 +39,7 @@ export default {
   },
   methods: {
     queryServer() {
-      axios.get('/api/lasinkyay/plans')
+      axios.get('/api/'+ this.prefixBackend +'/plans')
         .then((response) => {
           this.loading = false
           this.plans = response.data.data
@@ -49,17 +50,17 @@ export default {
       this.queryServer()
     },
     viewPlan(id) {
-      location.href = '/lasinkyay/plans/' + id
+      location.href = '/'+ this.prefixBackend +'/plans/' + id
     },
     editPlan(id) {
-      location.href = '/lasinkyay/plans/' + id + '/edit'
+      location.href = '/'+ this.prefixBackend +'/plans/' + id + '/edit'
     },
     deletePlan(id) {
       console.log('TO DO : delete ', id)
     }
   },
   mounted() {
-    console.log('lsk-test component mounted.')
+    console.log('lsk-plans-table component mounted.')
     this.fetchData()
   }
 }

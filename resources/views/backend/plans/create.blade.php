@@ -39,20 +39,20 @@
 		</div>
 		<div class="flex flex-wrap -mx-3 mb-6">
 			<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-				<label for="invoice-period">
-					Invoice Period
+				<label for="interval-count">
+					Interval Count
 				</label>
-				<input class="@if($errors->has('invoice_period')) error @endif" id="invoice-period" name="invoice_period" type="number" placeholder="3" required="">
-				@if($errors->has('invoice_period'))
-					<p class="text-error">{{$errors->first('invoice_period')}}</p>
+				<input class="@if($errors->has('interval_count')) error @endif" id="interval-count" name="interval_count" type="number" placeholder="3" required="">
+				@if($errors->has('interval_count'))
+					<p class="text-error">{{$errors->first('interval_count')}}</p>
 				@endif
 			</div>
 			<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-				<label for="invoice-interval">
-					Invoice Interval
+				<label for="interval">
+					Interval
 				</label>
 				<div class="relative">
-					<select class="" id="invoice-interval" name="invoice_interval" required="">
+					<select class="" id="interval" name="interval" required="">
 						<option>day</option>
 						<option>month</option>
 					</select>

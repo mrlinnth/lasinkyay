@@ -28,7 +28,7 @@ trait PlanSubscriber
      */
     public function subscriptions()
     {
-        return $this->morphMany(config('laraplans.models.plan_subscription'), 'subscribable');
+        return $this->morphMany(config('lasinkyay.models.plan_subscription'), 'subscribable');
     }
 
     /**

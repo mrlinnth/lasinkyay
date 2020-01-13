@@ -13,16 +13,17 @@
 		                <td>{{$plan->name}}</td>
 		            </tr>
 		                <td>Fees</td>
-		                <td>{{$plan->price}} {{$plan->currency}}</td>
+		                <td>{{$plan->price}}</td>
 		            </tr>
 		                <td>Duration</td>
-		                <td>{{$plan->invoice_period}} {{$plan->invoice_interval}}</td>
+		                <td>{{$plan->interval_count}} {{$plan->interval}}</td>
 		            </tr>
 		                <td>Description</td>
 		                <td>{{$plan->description}}</td>
 		            </tr>
 		                <td>Action</td>
 		                <td>
+		                	{{-- TO DO --}}
 		                	<a href="" class="button mr-2">Edit</a> <a href="" class="button">Delete</a>
 		                </td>
 		            </tr>
@@ -65,7 +66,7 @@
         	</tr>
         	@foreach($subscriptions as $sub)
         		<tr>
-        			<td>{{$sub->user->email}}</td>
+        			<td>{{$sub->subscribable->email}}</td>
         			<td>{{$sub->starts_at}}</td>
         			<td>{{$sub->ends_at}}</td>
         			<td>{{$sub->cancels_at}}</td>

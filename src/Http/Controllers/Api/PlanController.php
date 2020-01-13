@@ -5,6 +5,7 @@ namespace Mrlinnth\Lasinkyay\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Mrlinnth\Lasinkyay\Models\Plan;
 use Mrlinnth\Lasinkyay\Transformers\Plan as PlanResource;
 use Mrlinnth\Lasinkyay\Transformers\PlanCollection;
 
@@ -16,7 +17,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $plans = app('rinvex.subscriptions.plan')->get();
+        $plans = Plan::all();
         return new PlanCollection($plans);
     }
 

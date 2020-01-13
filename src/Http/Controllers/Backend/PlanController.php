@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Mrlinnth\Lasinkyay\Models\Plan;
 
 class PlanController extends Controller
 {
@@ -40,18 +41,17 @@ class PlanController extends Controller
             'description' => 'required',
             'invoice_period' => 'required',
         ]);
-        $plan = app('rinvex.subscriptions.plan')->create([
+
+        $plan = Plan::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'signup_fee' => 0,
-            'invoice_period' => $request->invoice_period,
-            'invoice_interval' => $request->invoice_interval,
-            'trial_period' => 0,
-            'trial_interval' => 'day',
+            'interval' => $request->interval,
+            'interval_count' => $request->interval_count,
+            'trial_period_days' => 0,
             'sort_order' => $request->sort_order,
-            'currency' => 'MMK',
         ]);
+
         return redirect()->route('lasinkyay.plans.index')->with('status', 'New PFC plan created.');
     }
 
@@ -62,8 +62,10 @@ class PlanController extends Controller
      */
     public function show($id)
     {
-        $plan = app('rinvex.subscriptions.plan')->find($id);
+        $plan = Plan::find($id);
         $subscriptions = $plan->subscriptions;
+        // dd($subscriptions->first()->subscribable->name);
+        // dd($subscriptions);
         $users = User::all();
         return view('lasinkyay::backend.plans.show', ['plan' => $plan, 'subscriptions' => $subscriptions, 'users' => $users]);
     }
@@ -75,7 +77,7 @@ class PlanController extends Controller
      */
     public function edit($id)
     {
-        $plan = app('rinvex.subscriptions.plan')->find($id);
+        $plan = Plan::find($id);
         return view('lasinkyay::backend.plans.edit')->with('plan', $plan);
     }
 

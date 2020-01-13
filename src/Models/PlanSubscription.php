@@ -117,7 +117,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     public function usage()
     {
         return $this->hasMany(
-            config('laraplans.models.plan_subscription_usage'),
+            config('lasinkyay.models.plan_subscription_usage'),
             'subscription_id'
         );
     }

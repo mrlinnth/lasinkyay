@@ -34,10 +34,10 @@ return [
     |
      */
     'models' => [
-        'plan' => 'Gerardojbaez\Laraplans\Models\Plan',
-        'plan_feature' => 'Gerardojbaez\Laraplans\Models\PlanFeature',
-        'plan_subscription' => 'Gerardojbaez\Laraplans\Models\PlanSubscription',
-        'plan_subscription_usage' => 'Gerardojbaez\Laraplans\Models\PlanSubscriptionUsage',
+        'plan' => 'Mrlinnth\Lasinkyay\Models\Plan',
+        'plan_feature' => 'Mrlinnth\Lasinkyay\Models\PlanFeature',
+        'plan_subscription' => 'Mrlinnth\Lasinkyay\Models\PlanSubscription',
+        'plan_subscription_usage' => 'Mrlinnth\Lasinkyay\Models\PlanSubscriptionUsage',
     ],
 
     /*

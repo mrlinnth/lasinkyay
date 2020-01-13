@@ -6,6 +6,6 @@
         <a href="{{ route('lasinkyay.plans.create') }}" class="text-sm text-blue-300 font-light">New Plan</a>
 
 		@include('lasinkyay::partials.alert')
-        <lsk-plans-table></lsk-plans-table>
+        <lsk-plans-table prefix-backend="{{ config('lasinkyay.prefix.backend') }}"></lsk-plans-table>
     </div>
 @endsection
