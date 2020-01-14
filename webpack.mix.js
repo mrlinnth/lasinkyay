@@ -3,8 +3,8 @@ require('laravel-mix-merge-manifest');
 
 mix.setPublicPath('publishable/assets').mergeManifest();
 
-mix.js(__dirname + '/resources/assets/js/app.js', __dirname + '/js/lasinkyay.js')
-	.postCss(__dirname + '/resources/assets/css/app.css', __dirname + '/css/lasinkyay.css', [
+mix.js(__dirname + '/resources/assets/js/app.js', __dirname + '/js')
+	.postCss(__dirname + '/resources/assets/css/app.css', __dirname + '/css', [
   		require('tailwindcss'),
 	]);
 
