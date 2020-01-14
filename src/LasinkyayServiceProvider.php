@@ -21,27 +21,23 @@ class LasinkyayServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $publishablePath = dirname(__DIR__) . '/publishable';
+
         $this->loadRoutesFrom(dirname(__DIR__) . '/routes/api.php');
 
         $this->loadRoutesFrom(dirname(__DIR__) . '/routes/web.php');
 
         $this->loadViewsFrom(dirname(__DIR__) . '/resources/views', 'lasinkyay');
 
-        $publishablePath = dirname(__DIR__) . '/publishable';
-
         $this->loadTranslationsFrom($publishablePath . '/lang', 'lasinkyay');
 
         if ($this->app->runningInConsole()) {
 
-            $this->loadMigrationsFrom($publishablePath . '/database/migrations');
+            $this->loadMigrationsFrom(dirname(__DIR__) . '/database/migrations');
 
             $this->publishes([
                 $publishablePath . '/lang' => resource_path('lang/vendor/lasinkyay'),
             ]);
-
-            $this->publishes([
-                $publishablePath . '/database/migrations/' => database_path('migrations'),
-            ], 'lasinkyay');
 
             $this->publishes([
                 $publishablePath . '/config/lasinkyay.php' => config_path('lasinkyay.php'),

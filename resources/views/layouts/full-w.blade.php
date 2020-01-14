@@ -7,7 +7,7 @@
 
 @section('body')
 
-	<div class="m-10">
+	<div id="app" class="m-10">
 		<div class="flex">
 			<div class="flex-1">
 				<h2 class="text-3xl font-medium leading-none mb-2">@yield('heading')</h2>
