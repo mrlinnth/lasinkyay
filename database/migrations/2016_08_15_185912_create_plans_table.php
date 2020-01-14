@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatePlansTable extends Migration
 {
@@ -16,7 +16,7 @@ class CreatePlansTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 7, 2)->default('0.00');
+            $table->integer('price');
             $table->string('interval')->default('month');
             $table->smallInteger('interval_count')->default(1);
             $table->smallInteger('trial_period_days')->nullable();

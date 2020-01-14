@@ -1,28 +1,21 @@
 <?php
 
-$namespacePrefix = '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\';
-
 //backend routes
-Route::prefix(config('lasinkyay.prefix.backend'))->name('lasinkyay.')->middleware('auth')->group(function () {
+Route::prefix('lasinkyay')
+    ->middleware('web')
+    ->name('lasinkyay.')
+    ->group(function () {
 
-    if (env('APP_ENV') == 'local') {
-        Route::get('/test', $namespacePrefix . 'LasinkyayController@test');
-    }
+        if (env('APP_ENV') == 'local') {
+            Route::get('/test', '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\LasinkyayController@test')->name('test');
+        }
 
-    Route::middleware('auth')->group(function () {
-        Route::get('/', $namespacePrefix . 'LasinkyayController@index')->name('index');
-        Route::post('/subscribe', $namespacePrefix . 'LasinkyayController@subscribe')->name('subscribe');
-        Route::resource('/plans', $namespacePrefix . 'Backend\PlanController');
+        Route::middleware('auth')
+            ->group(function () {
+                Route::get('/', '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\LasinkyayController@index')->name('index');
+                Route::post('/subscribe', '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\LasinkyayController@subscribe')->name('subscribe');
+                Route::post('/approve', '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\LasinkyayController@approve')->name('approve');
+
+                Route::resource('/plans', '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\Backend\\PlanController');
+            });
     });
-});
-
-//frontend routes
-Route::prefix(config('lasinkyay.prefix.backend'))->name('plans.')->group(function () {
-
-    Route::get('/', $namespacePrefix . 'Frontend\PublicController@index')->name('index');
-
-    Route::middleware('auth')->group(function () {
-        Route::post('/', $namespacePrefix . 'Frontend\PublicController@show')->name('store');
-        Route::get('/{slug}', $namespacePrefix . 'Frontend\PublicController@show')->name('show');
-    });
-});

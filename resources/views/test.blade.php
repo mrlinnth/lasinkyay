@@ -1,8 +1,7 @@
-@extends('lasinkyay::layouts.master')
+@extends('lasinkyay::layouts.full-w')
+
+@section('heading', 'Test Page')
 
 @section('content')
-	<div class="m-10">
-	    <h1 class="text-4xl">Test</h1>
-	    <lsk-test></lsk-test>
-    </div>
+    <h3>hello world</h3>
 @endsection

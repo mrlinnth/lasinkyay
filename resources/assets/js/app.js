@@ -18,7 +18,6 @@ window.Vue = require('vue');
 
 Vue.component('lsk-test', require('./components/LskTest.vue').default);
 Vue.component('lsk-plans-table', require('./components/PlansTable.vue').default);
-Vue.component('lsk-buy-plans', require('./components/BuyPlans.vue').default);
 
 const app = new Vue({
     el: '#app',

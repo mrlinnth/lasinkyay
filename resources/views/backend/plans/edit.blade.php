@@ -1,8 +1,8 @@
-@extends('lasinkyay::layouts.master')
+@extends('lasinkyay::layouts.full-w')
+
+@section('heading', 'Edit Plan')
 
 @section('content')
-<div class="m-10">
-	<h2 class="text-3xl font-medium leading-none mb-2">Edit Plan</h2>
 
 	<form action="{{ route('lasinkyay.plans.update', ['plan' => $plan]) }}" method="POST" class="w-full">
 		@method('PUT')
@@ -40,22 +40,22 @@
 		</div>
 		<div class="flex flex-wrap -mx-3 mb-6">
 			<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-				<label for="invoice-period">
-					Invoice Period
+				<label for="interval-count">
+					Interval Count
 				</label>
-				<input class="@if($errors->has('invoice_period')) error @endif" id="invoice-period" name="invoice_period" type="number" value="{{$plan->invoice_period}}" placeholder="3" required="">
-				@if($errors->has('invoice_period'))
-					<p class="text-error">{{$errors->first('invoice_period')}}</p>
+				<input class="@if($errors->has('interval_count')) error @endif" id="interval-count" name="interval_count" type="number" value="{{$plan->interval_count}}" placeholder="3" required="">
+				@if($errors->has('interval_count'))
+					<p class="text-error">{{$errors->first('interval_count')}}</p>
 				@endif
 			</div>
 			<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-				<label for="invoice-interval">
-					Invoice Interval
+				<label for="interval">
+					Interval
 				</label>
 				<div class="relative">
-					<select class="" id="invoice-interval" name="invoice_interval" required="">
-						<option @if($plan->invoice_interval=='day') selected @endif>day</option>
-						<option @if($plan->invoice_interval=='month') selected @endif>month</option>
+					<select class="" id="interval" name="interval" required="">
+						<option @if($plan->interval=='day') selected @endif>day</option>
+						<option @if($plan->interval=='month') selected @endif>month</option>
 					</select>
 					<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
 						<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -80,5 +80,5 @@
 			</div>
 		</div>
 	</form>
-</div>
+
 @endsection

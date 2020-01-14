@@ -14,8 +14,8 @@
             </tr>
             <tr v-for="plan in plans">
                 <td>{{ plan.name }}</td>
-                <td>{{ plan.price }} {{ plan.currency }}</td>
-                <td>{{ plan.invoice_period }} {{ plan.invoice_interval }}</td>
+                <td>{{ plan.price }}</td>
+                <td>{{ plan.interval_count }} {{ plan.interval }}</td>
                 <td>{{ plan.description }}</td>
                 <td>
                     <button v-on:click="viewPlan(plan.id)" class="mr-2">View</button>
@@ -59,7 +59,7 @@ export default {
     }
   },
   mounted() {
-    console.log('lsk-test component mounted.')
+    console.log('lsk-plans-table component mounted.')
     this.fetchData()
   }
 }
