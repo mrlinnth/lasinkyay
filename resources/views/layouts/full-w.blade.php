@@ -2,7 +2,7 @@
 
 @push('styles')
     {{-- Laravel Mix - CSS File --}}
-    <link rel="stylesheet" href="{{ mix('vendor/lasinkyay/css/lasinkyay.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/lasinkyay/css/app.css') }}">
 @endpush
 
 @section('body')
@@ -38,5 +38,5 @@
 
 @push('scripts')
     {{-- Laravel Mix - JS File --}}
-    <script src="{{ mix('vendor/lasinkyay/js/lasinkyay.js') }}"></script>
+    <script src="{{ asset('vendor/lasinkyay/js/app.js') }}"></script>
 @endpush
