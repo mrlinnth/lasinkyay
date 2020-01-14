@@ -44,6 +44,10 @@ class LasinkyayServiceProvider extends ServiceProvider
             ], 'lasinkyay');
 
             $this->publishes([
+                $publishablePath . '/assets' => public_path('vendor/lasinkyay'),
+            ], 'lasinkyay');
+
+            $this->publishes([
                 dirname(__DIR__) . '/resources/views' => resource_path('views/vendor/lasinkyay'),
             ], 'lasinkyay');
 
