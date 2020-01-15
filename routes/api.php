@@ -3,15 +3,19 @@
 use Illuminate\Http\Request;
 
 //backend routes
-Route::prefix('api/lasinkyay')
-    ->middleware('api', 'auth:api')
-    ->name('api-lasinkyay.')
-    ->group(function () {
+if (config('lasinkyay.backend')) {
 
-        Route::get('/', function (Request $request) {
-            return $request->user();
-        })->name('index');
+    Route::prefix('api/lasinkyay')
+        ->middleware('api', 'auth:api')
+        ->name('api-lasinkyay.')
+        ->group(function () {
 
-        Route::apiResource('/plans', '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\Api\\PlanController');
+            Route::get('/', function (Request $request) {
+                return $request->user();
+            })->name('index');
 
-    });
+            Route::apiResource('/plans', '\\Mrlinnth\\Lasinkyay\\Http\\Controllers\\Api\\PlanController');
+
+        });
+
+}

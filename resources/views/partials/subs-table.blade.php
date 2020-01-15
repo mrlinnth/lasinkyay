@@ -2,6 +2,7 @@
     	<tr>
     		<th>User</th>
     		<th>Bought</th>
+            <th>Plan</th>
     		<th>Start</th>
     		<th>End</th>
     		<th>Status</th>
@@ -9,8 +10,9 @@
     	</tr>
     	@foreach($subscriptions as $sub)
     		<tr>
-    			<td>{{$sub->subscribable->email}}</td>
+    			<td>{{$sub->subscribable->name}} [#{{$sub->subscribable_id}}]</td>
     			<td>{{$sub->bought_at}}</td>
+                <td>{{$sub->plan->name}}</td>
     			<td>{{$sub->starts_at}}</td>
     			<td>{{$sub->ends_at}}</td>
     			<td>{{$sub->status}}</td>
