@@ -2,11 +2,11 @@
 
 namespace Mrlinnth\Lasinkyay\Http\Controllers\Backend;
 
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Mrlinnth\Lasinkyay\Models\Plan;
+use Mrlinnth\Lasinkyay\Models\User;
 
 class PlanController extends Controller
 {
