@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 if (config('lasinkyay.backend')) {
 
     Route::prefix('api/lasinkyay')
-        ->middleware('api', 'auth:api')
+        ->middleware('api')
         ->name('api-lasinkyay.')
         ->group(function () {
 
