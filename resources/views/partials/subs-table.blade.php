@@ -10,7 +10,7 @@
     	</tr>
     	@foreach($subscriptions as $sub)
     		<tr>
-    			<td>{{$sub->subscribable->name}} [#{{$sub->subscribable_id}}]</td>
+    			<td>@if(!empty($sub->subscribable->name)) {{$sub->subscribable->name}} @endif [#{{$sub->subscribable_id}}]</td>
     			<td>{{$sub->bought_at}}</td>
                 <td>{{$sub->plan->name}}</td>
     			<td>{{$sub->starts_at}}</td>
@@ -30,3 +30,5 @@
     		</tr>
     	@endforeach
     </table>
+
+    {{ $subscriptions->links('lasinkyay::partials.pagination') }}
