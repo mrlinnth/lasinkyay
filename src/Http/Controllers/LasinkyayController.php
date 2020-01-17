@@ -5,9 +5,6 @@ namespace Mrlinnth\Lasinkyay\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Mrlinnth\Lasinkyay\Models\Plan;
-use Mrlinnth\Lasinkyay\Models\PlanSubscription;
-use Mrlinnth\Lasinkyay\Models\User;
 
 class LasinkyayController extends Controller
 {
@@ -17,7 +14,7 @@ class LasinkyayController extends Controller
      */
     public function index()
     {
-        $subscriptions = PlanSubscription::findPending()->get();
+        $subscriptions = config('lasinkyay.models.plan_subscription')::findPending()->paginate(config('lasinkyay.items_per_page'));
         return view('lasinkyay::index', ['subscriptions' => $subscriptions]);
     }
 
@@ -31,8 +28,8 @@ class LasinkyayController extends Controller
 
     public function subscribe(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
-        $plan = Plan::findOrFail($request->plan_id);
+        $user = config('lasinkyay.models.user')::findOrFail($request->user_id);
+        $plan = config('lasinkyay.models.plan')::findOrFail($request->plan_id);
         $user->newSubscription('main', $plan)->create();
 
         return redirect()->route('lasinkyay.plans.show', ['plan' => $request->plan_id])->with('status', $user->email . ' has subscribed.');
@@ -40,9 +37,9 @@ class LasinkyayController extends Controller
 
     public function approve(Request $request)
     {
-        $sub = PlanSubscription::findOrFail($request->sub_id);
+        $sub = config('lasinkyay.models.plan_subscription')::findOrFail($request->sub_id);
         $sub->approve();
 
-        return redirect()->route('lasinkyay.plans.show', ['plan' => $sub->plan_id])->with('status', $sub->subscribable->email . ' subscription is approved.');
+        return back()->with('status', $sub->subscribable->email . ' subscription is approved.');
     }
 }

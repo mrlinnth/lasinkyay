@@ -25,7 +25,8 @@
 	                <td>Action</td>
 	                <td>
 	                	{{-- TO DO --}}
-	                	<a href="" class="button mr-2">Edit</a> <a href="" class="button">Delete</a>
+	                	<a href="{{route('lasinkyay.plans.edit', ['plan'=>$plan->id])}}" class="button mr-2">Edit</a>
+	                	<a href="" class="button">Delete</a>
 	                </td>
 	            </tr>
 	        </table>

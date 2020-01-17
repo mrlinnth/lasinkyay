@@ -5,8 +5,6 @@ namespace Mrlinnth\Lasinkyay\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Mrlinnth\Lasinkyay\Models\Plan;
-use Mrlinnth\Lasinkyay\Models\User;
 
 class PlanController extends Controller
 {
@@ -42,7 +40,7 @@ class PlanController extends Controller
             'interval_count' => 'required',
         ]);
 
-        $plan = Plan::create([
+        $plan = config('lasinkyay.models.plan')::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
@@ -62,11 +60,11 @@ class PlanController extends Controller
      */
     public function show($id)
     {
-        $plan = Plan::find($id);
-        $subscriptions = $plan->subscriptions;
+        $plan = config('lasinkyay.models.plan')::find($id);
+        $subscriptions = $plan->subscriptions()->paginate(config('lasinkyay.items_per_page'));
         // dd($subscriptions->first()->subscribable->name);
         // dd($subscriptions);
-        $users = User::all();
+        $users = config('lasinkyay.models.user')::all();
         return view('lasinkyay::backend.plans.show', ['plan' => $plan, 'subscriptions' => $subscriptions, 'users' => $users]);
     }
 
@@ -77,7 +75,7 @@ class PlanController extends Controller
      */
     public function edit($id)
     {
-        $plan = Plan::find($id);
+        $plan = config('lasinkyay.models.plan')::find($id);
         return view('lasinkyay::backend.plans.edit')->with('plan', $plan);
     }
 
@@ -89,12 +87,12 @@ class PlanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $plan = app('rinvex.subscriptions.plan')->find($id);
+        $plan = config('lasinkyay.models.plan')::find($id);
         $plan->name = $request->name;
         $plan->description = $request->description;
         $plan->price = $request->price;
-        $plan->invoice_period = $request->invoice_period;
-        $plan->invoice_interval = $request->invoice_interval;
+        $plan->interval = $request->interval;
+        $plan->interval_count = $request->interval_count;
         $plan->sort_order = $request->sort_order;
         $plan->save();
 

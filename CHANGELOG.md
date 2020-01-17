@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.5] - 2020-01-17
+
+### Added
+- pagination
+
+### Changed
+- models to use from config 
+
+### Fixed
+- made button and .button to have same style
+
 ## [0.1.3] - 2020-01-15
 
 ### Added

@@ -16,6 +16,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Number of items to show
+    |--------------------------------------------------------------------------
+    |
+    | Option: integer
+    | Default: 20.
+    |
+     */
+
+    'items_per_page' => 20,
+
+    /*
+    |--------------------------------------------------------------------------
     | Positive Words
     |--------------------------------------------------------------------------
     |
@@ -44,6 +56,7 @@ return [
         'plan_feature' => 'Mrlinnth\Lasinkyay\Models\PlanFeature',
         'plan_subscription' => 'Mrlinnth\Lasinkyay\Models\PlanSubscription',
         'plan_subscription_usage' => 'Mrlinnth\Lasinkyay\Models\PlanSubscriptionUsage',
+        'user' => 'Mrlinnth\Lasinkyay\Models\User',
     ],
 
     /*
